@@ -53,7 +53,12 @@ function displayQuestion() {
     resultContainer.style.display = 'none';
 }
 
+let answerSelected = false;
+
 function selectAnswer(selectedElement, answer) {
+    if (answerSelected) return; // Prevent multiple selections
+    answerSelected = true;
+
     const answers = document.querySelectorAll('.answer');
     answers.forEach(a => a.classList.remove('selected'));
     selectedElement.classList.add('selected');
@@ -75,12 +80,14 @@ function selectAnswer(selectedElement, answer) {
             currentQuestion++;
             if (currentQuestion < questions.length) {
                 displayQuestion();
+                answerSelected = false; // Reset for the next question
             } else {
                 displayResult();
             }
         }, 1500);
     }, 500);
 }
+
 
 function displayResult() {
     quizContainer.style.display = 'none';
