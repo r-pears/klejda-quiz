@@ -62,11 +62,17 @@ function displayQuestion() {
   resultContainer.style.display = "none";
 }
 
+let answerSelected = false;
+
 function selectAnswer(selectedElement, answer) {
-  const answers = document.querySelectorAll(".answer");
-  // use more descriptive variable names
-  answers.forEach((answer) => answer.classList.remove("selected"));
-  selectedElement.classList.add("selected");
+
+    if (answerSelected) return; 
+    answerSelected = true;
+
+    const answers = document.querySelectorAll('.answer');
+    answers.forEach(a => a.classList.remove('selected'));
+    selectedElement.classList.add('selected');
+
 
   setTimeout(() => {
     if (answer === questions[currentQuestion].correct_answer) {
@@ -85,16 +91,20 @@ function selectAnswer(selectedElement, answer) {
       });
     }
 
-    setTimeout(() => {
-      currentQuestion++;
-      if (currentQuestion < questions.length) {
-        displayQuestion();
-      } else {
-        displayResult();
-      }
-    }, 1500);
-  }, 500);
+
+        setTimeout(() => {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                displayQuestion();
+                answerSelected = false; 
+            } else {
+                displayResult();
+            }
+        }, 1500);
+    }, 500);
+
 }
+
 
 function displayResult() {
   quizContainer.style.display = "none";
