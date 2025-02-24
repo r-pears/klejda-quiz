@@ -56,7 +56,7 @@ function displayQuestion() {
 let answerSelected = false;
 
 function selectAnswer(selectedElement, answer) {
-    if (answerSelected) return; // Prevent multiple selections
+    if (answerSelected) return; 
     answerSelected = true;
 
     const answers = document.querySelectorAll('.answer');
@@ -80,7 +80,7 @@ function selectAnswer(selectedElement, answer) {
             currentQuestion++;
             if (currentQuestion < questions.length) {
                 displayQuestion();
-                answerSelected = false; // Reset for the next question
+                answerSelected = false; 
             } else {
                 displayResult();
             }
